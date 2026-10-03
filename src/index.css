@@ -1,0 +1,55 @@
+/* Responsive styles — desktop layout (>=768px) is unchanged */
+html, body { overflow-x: hidden; }
+img, svg { max-width: 100%; }
+.sidebar-backdrop { display: none; }
+
+/* Tablets and below */
+@media (max-width: 991.98px) {
+  .topbar-search { width: 220px !important; }
+}
+
+/* Mobile */
+@media (max-width: 767.98px) {
+  /* Sidebar becomes an off-canvas drawer */
+  .app-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    min-height: 100vh !important;
+    width: 250px !important;
+    z-index: 1040;
+    overflow-y: auto;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease !important;
+  }
+  .app-sidebar.mobile-open { transform: translateX(0); }
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1030;
+  }
+
+  /* Topbar wraps: title + icons on first row, search below */
+  .topbar { flex-wrap: wrap; gap: 0.75rem; }
+  .topbar-search { order: 3; width: 100% !important; }
+  .topbar h4 { font-size: 1.15rem; }
+
+  /* Tighter page padding */
+  .px-4 { padding-left: 1rem !important; padding-right: 1rem !important; }
+  .card.p-4 { padding: 1rem !important; }
+  .mx-3 { margin-left: 0.5rem !important; margin-right: 0.5rem !important; }
+
+  /* Keep table text on one line and scroll sideways inside the card */
+  .table-responsive th, .table-responsive td { white-space: nowrap; }
+
+  /* Form labels / spacing when columns stack */
+  .row > [class*="col-md-"] { margin-bottom: 0.75rem; }
+}
+
+/* Very small phones */
+@media (max-width: 400px) {
+  .topbar .d-flex.align-items-center.gap-2 > span:nth-child(2) { display: none; }
+}
